@@ -21,7 +21,7 @@ namespace RenameFiles
             Console.WriteLine("Enter one file extension to be renamed:");
             Console.WriteLine("E.g. MP3, MP4, AVI, or enter * for all types");
             var extension = Console.ReadLine();
-            DirectoryInfo directory=new DirectoryInfo(".");
+            DirectoryInfo directory = new DirectoryInfo(".");
             var subDirectories = directory.GetDirectories();
             RenameFilesInDirectory(subDirectories, "*." + extension);
         }
@@ -39,16 +39,17 @@ namespace RenameFiles
                 foreach (var fileInfo in files)
                 {
                     var newFileName = Path.Combine(fileInfo.DirectoryName,
-                        directory.Name + " " + counter + fileInfo.Extension);
+                        directory.Name + " " + counter);
                     if (File.Exists(newFileName))
                     {
                         newFileName = newFileName + " - Copy";
                     }
-                    File.Move(fileInfo.FullName, newFileName);
+                    var newExtn = fileInfo.Extension.Split(' ')[0];
+                    File.Move(fileInfo.FullName, newFileName + newExtn);
                     counter++;
                 }
                 var subDirectories = directory.GetDirectories();
-                RenameFilesInDirectory(subDirectories,extension);
+                RenameFilesInDirectory(subDirectories, extension);
             }
         }
     }
