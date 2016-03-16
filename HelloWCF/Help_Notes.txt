@@ -1,0 +1,9 @@
+/** 
+
+In the service implementation class add the attribute
+
+[ServiceBehavior(InstanceContextMode = InstantContextMode.PerCall)] 
+//denotes the lifetime of the service object. If the object implements IDisposabl and configured with Percall
+It will mark it for disposing the object as soon as the method execution completes for the called operation contract.
+
+**/
